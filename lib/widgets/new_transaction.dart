@@ -27,6 +27,8 @@ class _NewTransactionState extends State<NewTransaction> {
       }
 
       widget.addTransactionHandler(enteredTitle, enteredAmount);
+
+      Navigator.of(context).pop();
     }
 
     return  Card(

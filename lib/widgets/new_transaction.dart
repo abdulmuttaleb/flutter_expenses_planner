@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
 
   final Function addTransactionHandler;
 
   NewTransaction(this.addTransactionHandler);
 
+  @override
+  _NewTransactionState createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
   @override
   Widget build(BuildContext context) {
 
@@ -21,7 +26,7 @@ class NewTransaction extends StatelessWidget {
         return;
       }
 
-      addTransactionHandler(enteredTitle, enteredAmount);
+      widget.addTransactionHandler(enteredTitle, enteredAmount);
     }
 
     return  Card(

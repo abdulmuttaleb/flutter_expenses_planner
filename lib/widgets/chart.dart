@@ -11,7 +11,6 @@ class Chart extends StatelessWidget {
     return List.generate(7, (index){
       final weekDay = DateTime.now().subtract(Duration(days: index),);
       var totalSum = 0.0;
-
       for(var i =0; i < recentTransactions.length; i++){
         if(recentTransactions[i].date.day == weekDay.day &&
            recentTransactions[i].date.month == weekDay.month &&
@@ -25,6 +24,7 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(groupedTransactionValues);
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),

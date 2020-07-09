@@ -3,6 +3,8 @@ import './widgets/transaction_list.dart';
 import 'models/transaction.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets/chart.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -46,17 +48,36 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   final List<Transaction> _userTransactions = [
-//    Transaction(
-//        id: 't1',
-//        title: 'New Shoes',
-//        amount: 69.99,
-//        date: DateTime.now()),
-//    Transaction(
-//        id: 't2',
-//        title: 'Weekly Groceries',
-//        amount: 16.55,
-//        date: DateTime.now()),
+    Transaction(
+        id: 't1',
+        title: 'New Shoes',
+        amount: 69.99,
+        date: DateTime.now()),
+    Transaction(
+        id: 't2',
+        title: 'Weekly Groceries',
+        amount: 16.55,
+        date: DateTime.now().subtract(Duration(days: 1))),
+    Transaction(
+        id: 't3',
+        title: 'Rod',
+        amount: 100,
+        date: DateTime.now().subtract(Duration(days: 2))),
+    Transaction(
+        id: 't4',
+        title: 'DC Reel',
+        amount: 700,
+        date: DateTime.now().subtract(Duration(days: 3))),
+    Transaction(
+        id: 't5',
+        title: 'DC Reel',
+        amount: 1200,
+        date: DateTime.now().subtract(Duration(days: 8))),
   ];
+
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((transaction) => transaction.date.isAfter(DateTime.now().subtract(Duration(days: 7)))).toList();
+  }
 
   void _addNewTransaction(String title, double amount){
     final newTx = Transaction(
@@ -94,13 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
 //        mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              child: Card(
-                child: Text('CHART!', style: TextStyle(color: Colors.white), textAlign: TextAlign.center,),
-                color: Colors.lightBlueAccent,
-                elevation: 5,
-              ),
-            ),
+            Chart(_recentTransactions),
             TransactionList(_userTransactions)
           ],
         ),

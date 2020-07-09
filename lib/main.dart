@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _startAddNewTransaction(BuildContext ctx){
-    showModalBottomSheet(context: ctx, builder: (bCtx){
+    showModalBottomSheet(context: ctx, builder: (_){
       return NewTransaction(_addNewTransaction);
     });
   }

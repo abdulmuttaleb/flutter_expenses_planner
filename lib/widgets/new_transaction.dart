@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+
 class NewTransaction extends StatefulWidget {
 
   final Function addTransactionHandler;
@@ -12,42 +13,42 @@ class NewTransaction extends StatefulWidget {
 }
 
 class _NewTransactionState extends State<NewTransaction> {
-  @override
-  Widget build(BuildContext context) {
+  final _titleController = TextEditingController();
+  final _amountController = TextEditingController();
+  DateTime _selectedDate;
 
-    final _titleController = TextEditingController();
-    final _amountController = TextEditingController();
-    DateTime _selectedDate;
-    void submitData(){
-      final enteredTitle = _titleController.text;
-      final enteredAmount = double.parse(_amountController.text);
+  void submitData(){
+    final enteredTitle = _titleController.text;
+    final enteredAmount = double.parse(_amountController.text);
 
-      if(enteredTitle.isEmpty || enteredAmount <= 0 || _selectedDate == null){
+    if(enteredTitle.isEmpty || enteredAmount <= 0 || _selectedDate == null){
+      return;
+    }
+
+    widget.addTransactionHandler(enteredTitle, enteredAmount, _selectedDate);
+
+    Navigator.pop(context);
+  }
+
+  void _presentDatePicker(){
+    showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2019),
+        lastDate: DateTime.now()
+    ).then((selectedDate) {
+      if(selectedDate == null){
         return;
       }
-
-      widget.addTransactionHandler(enteredTitle, enteredAmount, _selectedDate);
-
-      Navigator.of(context).pop();
-    }
-
-    void _presentDatePicker(){
-      showDatePicker(
-          context: context,
-          initialDate: DateTime.now(),
-          firstDate: DateTime(2019),
-          lastDate: DateTime.now()
-      ).then((selectedDate) {
-        if(selectedDate == null){
-          return;
-        }
-        setState(() {
-          _selectedDate = selectedDate;
-        });
-        print(selectedDate);
+      setState(() {
+        _selectedDate = selectedDate;
       });
-    }
+      print(selectedDate);
+    });
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Card(
       elevation: 5,
       child: Container(

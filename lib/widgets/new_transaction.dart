@@ -22,7 +22,6 @@ class _NewTransactionState extends State<NewTransaction> {
       final enteredAmount = double.parse(amountController.text);
 
       if(enteredTitle.isEmpty || enteredAmount <= 0){
-
         return;
       }
 
@@ -31,7 +30,7 @@ class _NewTransactionState extends State<NewTransaction> {
       Navigator.of(context).pop();
     }
 
-    return  Card(
+    return Card(
       elevation: 5,
       child: Container(
         padding: EdgeInsets.all(10),
@@ -45,7 +44,6 @@ class _NewTransactionState extends State<NewTransaction> {
               onSubmitted: (_) => submitData,
             ),
             TextField(
-
               decoration: InputDecoration(
                   labelText: 'Amount'),
               controller: amountController,

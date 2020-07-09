@@ -1,3 +1,4 @@
+import 'package:expneses_planner/widgets/chart_bar.dart';
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 
@@ -22,6 +23,11 @@ class Chart extends StatelessWidget {
     });
   }
 
+  double get totalSpending {
+    return groupedTransactionValues.fold(0.0, (sum, item){
+      return sum + item['amount'];
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -29,7 +35,10 @@ class Chart extends StatelessWidget {
       margin: EdgeInsets.all(20),
       child: Row(
         children: groupedTransactionValues.map((data) {
-            return Text('${data['day']} : ${data['amount'].toString()}');
+            return ChartBar(
+                data['day'].toString(),
+                data['amount'],
+                totalSpending == 0.0 ? 0.0 : (data['amount'] as double) / totalSpending);
           }).toList()
         ,
       ),

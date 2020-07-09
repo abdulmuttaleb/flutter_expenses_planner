@@ -20,7 +20,7 @@ class Chart extends StatelessWidget {
         }
       }
       return {'day': weekDay.day.toString(), 'amount': totalSum};
-    });
+    }).reversed.toList();
   }
 
   double get totalSpending {

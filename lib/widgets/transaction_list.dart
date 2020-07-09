@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../models/transaction.dart';
 class TransactionList extends StatelessWidget {
 
@@ -44,7 +45,7 @@ class TransactionList extends StatelessWidget {
               title: Text(
                   transactions[index].title,
                   style: Theme.of(context).textTheme.title),
-              subtitle: Text(transactions[index].date.toIso8601String()),
+              subtitle: Text(DateFormat('yyyy-MM-dd').format(transactions[index].date)),
               trailing: IconButton(
                 icon: Icon(Icons.delete),
                 color: Theme.of(context).errorColor,

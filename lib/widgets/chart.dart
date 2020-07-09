@@ -1,5 +1,6 @@
 import 'package:expneses_planner/widgets/chart_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../models/transaction.dart';
 
 class Chart extends StatelessWidget {
@@ -19,7 +20,7 @@ class Chart extends StatelessWidget {
           totalSum += recentTransactions[i].amount;
         }
       }
-      return {'day': weekDay.day.toString(), 'amount': totalSum};
+      return {'day': DateFormat.E().format(weekDay), 'amount': totalSum};
     }).reversed.toList();
   }
 

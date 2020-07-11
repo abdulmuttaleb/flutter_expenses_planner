@@ -58,31 +58,31 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _showChart = true;
 
   final List<Transaction> _userTransactions = [
-//    Transaction(
-//        id: 't1',
-//        title: 'New Shoes',
-//        amount: 69.99,
-//        date: DateTime.now()),
-//    Transaction(
-//        id: 't2',
-//        title: 'Weekly Groceries',
-//        amount: 16.55,
-//        date: DateTime.now().subtract(Duration(days: 1))),
-//    Transaction(
-//        id: 't3',
-//        title: 'Rod',
-//        amount: 100,
-//        date: DateTime.now().subtract(Duration(days: 2))),
-//    Transaction(
-//        id: 't4',
-//        title: 'DC Reel',
-//        amount: 1111700,
-//        date: DateTime.now().subtract(Duration(days: 3))),
-//    Transaction(
-//        id: 't5',
-//        title: 'DC Reel',
-//        amount: 1200,
-//        date: DateTime.now().subtract(Duration(days: 8))),
+    Transaction(
+        id: 't1',
+        title: 'New Shoes',
+        amount: 69.99,
+        date: DateTime.now()),
+    Transaction(
+        id: 't2',
+        title: 'Weekly Groceries',
+        amount: 16.55,
+        date: DateTime.now().subtract(Duration(days: 1))),
+    Transaction(
+        id: 't3',
+        title: 'Rod',
+        amount: 100,
+        date: DateTime.now().subtract(Duration(days: 2))),
+    Transaction(
+        id: 't4',
+        title: 'DC Reel',
+        amount: 1111700,
+        date: DateTime.now().subtract(Duration(days: 3))),
+    Transaction(
+        id: 't5',
+        title: 'DC Reel',
+        amount: 1200,
+        date: DateTime.now().subtract(Duration(days: 8))),
   ];
 
   List<Transaction> get _recentTransactions {

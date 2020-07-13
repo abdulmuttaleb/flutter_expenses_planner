@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:expneses_planner/widgets/adaptive_flat_button.dart';
+import 'package:expneses_planner/widgets/adaptive_raised_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -104,25 +106,11 @@ class _NewTransactionState extends State<NewTransaction> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(_selectedDate == null ? 'No Date Chosen!' : DateFormat('yyyy-MM-dd').format(_selectedDate)),
-                    Platform.isIOS?
-                    CupertinoButton(
-                      child: Text('Choose Date', style: TextStyle(fontWeight: FontWeight.bold),),
-                      onPressed: _presentDatePicker,
-                    ):
-                    FlatButton(
-                      textColor: Theme.of(context).primaryColor,
-                      child: Text('Choose Date', style: TextStyle(fontWeight: FontWeight.bold)),
-                      onPressed: _presentDatePicker,
-                    )
+                    AdaptiveFlatButton('Choose Date', _presentDatePicker)
                   ],
                 ),
               ),
-              RaisedButton(
-                child: Text('Add Transaction'),
-                onPressed: submitData,
-                color: Theme.of(context).primaryColor,
-                textColor: Theme.of(context).textTheme.button.color,
-              )
+              AdaptiveRaisedButton('Add Transaction', submitData)
             ],
           ),
         ),

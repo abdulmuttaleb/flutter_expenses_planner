@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -62,24 +65,50 @@ class _NewTransactionState extends State<NewTransaction> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
+              Platform.isIOS ?
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CupertinoTextField(
+                  placeholder: 'Title',
+                  controller: _titleController,
+                  onSubmitted: (_) => submitData,
+                ),
+              ):
               TextField(
                 decoration: InputDecoration(
                     labelText: 'Title'),
                 controller: _titleController,
                 onSubmitted: (_) => submitData,
               ),
+              Platform.isIOS ?
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CupertinoTextField(
+                  placeholder: 'Amount',
+                  controller: _amountController,
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  onSubmitted:(_) => submitData,
+                ),
+              )    :
               TextField(
                 decoration: InputDecoration(
                     labelText: 'Amount'),
                 controller: _amountController,
-                keyboardType: TextInputType.numberWithOptions(decimal: true) ,
+                keyboardType: TextInputType.number ,
                 onSubmitted: (_) => submitData,
               ),
               Container(
                 height: 70,
+                margin: Platform.isIOS ? EdgeInsets.symmetric(horizontal: 8.0): EdgeInsets.symmetric(horizontal: 0.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(_selectedDate == null ? 'No Date Chosen!' : DateFormat('yyyy-MM-dd').format(_selectedDate)),
+                    Platform.isIOS?
+                    CupertinoButton(
+                      child: Text('Choose Date', style: TextStyle(fontWeight: FontWeight.bold),),
+                      onPressed: _presentDatePicker,
+                    ):
                     FlatButton(
                       textColor: Theme.of(context).primaryColor,
                       child: Text('Choose Date', style: TextStyle(fontWeight: FontWeight.bold)),
